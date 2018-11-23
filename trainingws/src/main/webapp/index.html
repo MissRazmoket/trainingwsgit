@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<h3 class="country"></h3>
+	<h3 class="capital"></h3>
+	<h3 class="population"></h3>
+	<img class="flag" width=50%>
+	<script type="text/javascript">
+	
+	$(function() {
+		console.log("Je vais y arriver!")
+		$("body").append("<h3>Du calme!</h3>");
+	/* 	$.get("http://localhost:8080/trainingws/api/countries/france", function(data) {
+			console.log(data.name)
+			var nameCountry = data.name;
+			$(".country").html(nameCountry);
+			
+			var capName = data.capital;
+			$(".capital").html(capName);
+			
+			$(".population").html(data.population);
+			$(".flag").attr("src", data.flag);
+			
+		}); */
+		
+		
+		$.get("http://localhost:8080/trainingws/api/countries/list", function(list) {
+			console.log(list[1].population, list[1].name);
+			
+			list.forEach(function(data){
+				$("body").append("<h3>" + data.name + "</h3>");
+				$("body").append("<h3>" + data.capital + "</h3>");
+				$("body").append("<h3>" + data.population + "</h3>");
+				$("body").append("<img src='" + data.flag + "'width= 30% />");
+			});
+		});
+	});
+	
+	</script>
+</body>
+</html>
